@@ -1,0 +1,35 @@
+﻿@model List<CoreAndFood2.Data.Models.Food>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Food List</h1>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Food Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Category Name</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Details</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <th>@x.FoodID.</th>
+            <td>@x.Name</td>
+            <td>@x.Price</td>
+            <td>@x.Stock</td>
+            <td>@x.Category.CategoryName</td>       @*include özelliğini kullanarak yaptık*@
+            <td><a href="/Food/FoodDelete/@x.FoodID" class="btn btn-danger">Delete</a></td>
+            <td><a href="/Food/FoodGet/@x.FoodID" class="btn btn-success">Update</a></td>
+            <td><a href="/Food/FoodDetails/" class="btn btn-info">Details</a></td>
+        </tr>
+    }
+</table>
+<a href="/Food/FoodAdd/" class="btn btn-primary">New Food</a>
