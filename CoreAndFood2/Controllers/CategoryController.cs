@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using CoreAndFood2.Data.Models;
 using CoreAndFood2.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace CoreAndFood2.Controllers
 {
     public class CategoryController : Controller
     {
         CategoryRepository categoryRepository = new CategoryRepository();
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         { 
-            return View(categoryRepository.TList());
+            return View(categoryRepository.TList().ToPagedList(page,3));
         }
         [HttpGet]
         public IActionResult CategoryAdd()
