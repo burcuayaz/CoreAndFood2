@@ -87,6 +87,26 @@ namespace CoreAndFood2.Controllers
             var deger6 = c.Foods.Where(x => x.CategoryID == c.Categories.Where(y => y.CategoryName == "Legumes").Select(y => y.CategoryID).FirstOrDefault()).Count();
             ViewBag.d6 = deger6;
 
+            var deger7 = c.Foods.OrderByDescending(x => x.Stock).Select(y => y.Name).FirstOrDefault();
+            ViewBag.d7 = deger7;
+
+            var deger8 = c.Foods.OrderBy(x => x.Stock).Select(y => y.Name).FirstOrDefault();
+            ViewBag.d8 = deger8;
+
+            var deger9 = c.Foods.Average(x => x.Price).ToString("0.00");
+            ViewBag.d9 = deger9;
+
+            var deger10 = c.Categories.Where(x => x.CategoryName=="Fruit").Select(y=>y.CategoryID).FirstOrDefault();
+            var deger10p = c.Foods.Where(y => y.CategoryID == deger10).Sum(x => x.Stock);
+            ViewBag.d10 = deger10p;
+
+            var deger11 = c.Categories.Where(x => x.CategoryName == "Vegetables").Select(y => y.CategoryID).FirstOrDefault();
+            var deger11p = c.Foods.Where(y => y.CategoryID == deger11).Sum(x => x.Stock);
+            ViewBag.d11 = deger11p;
+
+            var deger12 = c.Foods.OrderByDescending(x => x.Price).Select(y => y.Name).FirstOrDefault();
+            ViewBag.d12 = deger12;
+
             return View();
         }
     }
